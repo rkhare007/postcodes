@@ -21,8 +21,12 @@ public class PostCodeConnector {
     public ResponseEntity<PostCodeResponse> getRandomPostCode(){
         log.info("Fetching Random PostCode Details");
         HttpEntity httpEntity= HttpEntity.EMPTY;
-        ResponseEntity<PostCodeResponse> response = restTemplate.exchange(postCodeConfiguration.getPostCodeRandomUrl(), HttpMethod.GET, httpEntity,PostCodeResponse.class);
-        return response;
+        try{
+            ResponseEntity<PostCodeResponse> response = restTemplate.exchange(postCodeConfiguration.getPostCodeRandomUrl(), HttpMethod.GET, httpEntity,PostCodeResponse.class);
+            return response;
+        }catch (NullPointerException ex){
+            throw new NullPointerException(ex.getMessage());
+        }
     }
 
 }
