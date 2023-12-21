@@ -20,8 +20,8 @@ public class PostCodeService {
 
     public ResponseEntity<PostCodeResponse> getRandomPostCode(){
         ResponseEntity<PostCodeResponse>  response=postCodeConnector.getRandomPostCode();
-//        if(response.hasBody())
-//            saveRedis(response.getBody());
+        if(response.hasBody())
+            saveRedis(response.getBody());
         return response;
     }
 
